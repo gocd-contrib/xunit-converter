@@ -1,0 +1,11 @@
+<testsuites name="name" time="0.0" tests="1" failures="1" errors="1" disabled="1">
+   <testsuite name="name" time="0.0" tests="1" failures="1" errors="1" disabled="1" skipped="1" timestamp="time">
+      <properties>
+         <property name="name" value="value"/>
+      </properties>
+      <testcase name="name" time="0.0" classname="classname">
+         <failure type="type" message="message">value</failure>
+         <system-out>value</system-out>
+      </testcase>
+   </testsuite>
+</testsuites>
