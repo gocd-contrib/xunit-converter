@@ -1,7 +1,7 @@
-package com.thoughtworks.go.xunit.helpers;
+package com.thoughtworks.xunit.helpers;
 
-import com.thoughtworks.go.xunit.model.Error;
-import com.thoughtworks.go.xunit.model.*;
+import com.thoughtworks.xunit.model.Error;
+import com.thoughtworks.xunit.model.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;

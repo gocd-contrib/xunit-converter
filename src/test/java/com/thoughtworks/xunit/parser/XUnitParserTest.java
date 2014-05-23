@@ -1,11 +1,11 @@
-package com.thoughtworks.go.xunit.parser;
+package com.thoughtworks.xunit.parser;
 
-import com.thoughtworks.go.xunit.model.TestSuite;
-import com.thoughtworks.go.xunit.model.TestSuites;
+import com.thoughtworks.xunit.model.TestSuite;
+import com.thoughtworks.xunit.model.TestSuites;
 import org.junit.Test;
 
-import static com.thoughtworks.go.xunit.helpers.ResultMatcher.*;
-import static com.thoughtworks.go.xunit.helpers.TestHelper.resource;
+import static com.thoughtworks.xunit.helpers.ResourceHelper.resource;
+import static com.thoughtworks.xunit.helpers.ResultMatcher.*;
 
 public class XUnitParserTest {
     @Test

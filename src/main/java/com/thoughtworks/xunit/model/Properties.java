@@ -1,4 +1,4 @@
-package com.thoughtworks.go.xunit.model;
+package com.thoughtworks.xunit.model;
 
 import org.simpleframework.xml.ElementList;
 

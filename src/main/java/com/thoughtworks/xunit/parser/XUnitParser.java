@@ -1,7 +1,7 @@
-package com.thoughtworks.go.xunit.parser;
+package com.thoughtworks.xunit.parser;
 
-import com.thoughtworks.go.xunit.model.TestSuite;
-import com.thoughtworks.go.xunit.model.TestSuites;
+import com.thoughtworks.xunit.model.TestSuite;
+import com.thoughtworks.xunit.model.TestSuites;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 

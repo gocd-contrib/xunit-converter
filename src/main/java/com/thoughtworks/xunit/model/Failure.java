@@ -1,9 +1,9 @@
-package com.thoughtworks.go.xunit.model;
+package com.thoughtworks.xunit.model;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Text;
 
-public class Skipped {
+public class Failure {
     @Attribute(required = false)
     private String type;
 
@@ -13,10 +13,10 @@ public class Skipped {
     @Text(required = false)
     public String value;
 
-    public Skipped() {
+    public Failure() {
     }
 
-    public Skipped(String type, String message, String value) {
+    public Failure(String type, String message, String value) {
         this.type = type;
         this.message = message;
         this.value = value;
@@ -49,13 +49,13 @@ public class Skipped {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Skipped)) return false;
+        if (!(o instanceof Failure)) return false;
 
-        Skipped skipped = (Skipped) o;
+        Failure failure = (Failure) o;
 
-        if (message != null ? !message.equals(skipped.message) : skipped.message != null) return false;
-        if (type != null ? !type.equals(skipped.type) : skipped.type != null) return false;
-        if (value != null ? !value.equals(skipped.value) : skipped.value != null) return false;
+        if (message != null ? !message.equals(failure.message) : failure.message != null) return false;
+        if (type != null ? !type.equals(failure.type) : failure.type != null) return false;
+        if (value != null ? !value.equals(failure.value) : failure.value != null) return false;
 
         return true;
     }

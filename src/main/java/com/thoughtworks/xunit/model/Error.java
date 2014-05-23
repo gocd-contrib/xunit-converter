@@ -1,9 +1,9 @@
-package com.thoughtworks.go.xunit.model;
+package com.thoughtworks.xunit.model;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Text;
 
-public class Failure {
+public class Error {
     @Attribute(required = false)
     private String type;
 
@@ -13,10 +13,10 @@ public class Failure {
     @Text(required = false)
     public String value;
 
-    public Failure() {
+    public Error() {
     }
 
-    public Failure(String type, String message, String value) {
+    public Error(String type, String message, String value) {
         this.type = type;
         this.message = message;
         this.value = value;
@@ -49,13 +49,13 @@ public class Failure {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Failure)) return false;
+        if (!(o instanceof Error)) return false;
 
-        Failure failure = (Failure) o;
+        Error error = (Error) o;
 
-        if (message != null ? !message.equals(failure.message) : failure.message != null) return false;
-        if (type != null ? !type.equals(failure.type) : failure.type != null) return false;
-        if (value != null ? !value.equals(failure.value) : failure.value != null) return false;
+        if (message != null ? !message.equals(error.message) : error.message != null) return false;
+        if (type != null ? !type.equals(error.type) : error.type != null) return false;
+        if (value != null ? !value.equals(error.value) : error.value != null) return false;
 
         return true;
     }
