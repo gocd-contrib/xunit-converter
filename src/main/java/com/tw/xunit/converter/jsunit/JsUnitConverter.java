@@ -16,15 +16,11 @@ public class JsUnitConverter implements XUnitConverter {
     }
 
     @Override
-    public TestSuite convertToXUnitFormat(File file) {
+    public TestSuite convertToXUnitFormat(File file) throws Exception {
         Serializer serializer = new Persister();
 
-        try {
-            BrowserResult br = serializer.read(BrowserResult.class, file);
-            br.getTestCases().getTestCases();
-            return new TestSuite(null, br.getTime(), 0, 0, 0, 0, 0, null, null, br.getId(), null, null, null, br.getProperties(), br.getTestCases().getTestCases(), null, null);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        BrowserResult br = serializer.read(BrowserResult.class, file);
+        br.getTestCases().getTestCases();
+        return new TestSuite(null, br.getTime(), 0, 0, 0, 0, 0, null, null, br.getId(), null, null, null, br.getProperties(), br.getTestCases().getTestCases(), null, null);
     }
 }

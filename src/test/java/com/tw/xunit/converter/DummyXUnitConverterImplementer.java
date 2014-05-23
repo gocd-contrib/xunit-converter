@@ -14,13 +14,7 @@ public class DummyXUnitConverterImplementer implements XUnitConverter {
     }
 
     @Override
-    public TestSuite convertToXUnitFormat(File file) {
-        TestSuite testSuite = null;
-        try {
-            testSuite = XUnitParser.parseTestSuiteXUnitXML(file);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return testSuite;
+    public TestSuite convertToXUnitFormat(File file) throws Exception {
+        return XUnitParser.parseTestSuiteXUnitXML(file);
     }
 }

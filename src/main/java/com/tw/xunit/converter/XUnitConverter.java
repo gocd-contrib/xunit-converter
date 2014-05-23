@@ -15,5 +15,5 @@ public interface XUnitConverter {
      * @param file input file that needs to be converted to XUnit format. Guaranteed to match one of the specified patterns.
      * @return XUnit Object map for <testsuite>...</testsuite> - TestSuite. It will be serialized to a file confirming to XUnit format.
      */
-    public TestSuite convertToXUnitFormat(File file);
+    public TestSuite convertToXUnitFormat(File file) throws Exception;
 }

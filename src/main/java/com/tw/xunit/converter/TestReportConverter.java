@@ -37,12 +37,20 @@ public class TestReportConverter {
         outputDirectory.mkdirs();
 
         for (File currentTestReport : testReports) {
-            convertToXUnit(currentTestReport, converter, outputDirectory);
+            try {
+                convertToXUnit(currentTestReport, converter, outputDirectory);
+            } catch (Exception e) {
+                // report this
+            }
         }
     }
 
+    public static boolean supportsConverter(String converterId) {
+        return converters.containsKey(converterId);
+    }
+
     XUnitConverter getConverterFor(String converterId) throws UnknownConverterException {
-        if (!converters.containsKey(converterId)) {
+        if (!supportsConverter(converterId)) {
             throw new UnknownConverterException(converterId);
         }
         return converters.get(converterId);
@@ -52,13 +60,9 @@ public class TestReportConverter {
         return directory.listFiles((FileFilter) new WildcardFileFilter(patterns.toArray(new String[patterns.size()]), IOCase.INSENSITIVE));
     }
 
-    void convertToXUnit(File currentTestReport, XUnitConverter converter, File outputDirectory) {
+    void convertToXUnit(File currentTestReport, XUnitConverter converter, File outputDirectory) throws Exception {
         TestSuite testSuiteForTestReport = converter.convertToXUnitFormat(currentTestReport);
         String outputFilePath = outputDirectory + "/" + currentTestReport.getName() + ".xml";
-        try {
-            XUnitPrinter.printTestSuiteXUnitXML(testSuiteForTestReport, new File(outputFilePath));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        XUnitPrinter.printTestSuiteXUnitXML(testSuiteForTestReport, new File(outputFilePath));
     }
 }
