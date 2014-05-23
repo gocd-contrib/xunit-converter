@@ -1,5 +1,6 @@
 package com.thoughtworks.xunit.converter;
 
+import com.thoughtworks.xunit.converter.jsunit.JsUnitConverter;
 import com.thoughtworks.xunit.exception.NoFileToConvertException;
 import com.thoughtworks.xunit.exception.UnknownConverterException;
 import com.thoughtworks.xunit.model.TestSuite;
@@ -17,6 +18,7 @@ public class TestReportConverter {
     static Map<String, XUnitConverter> converters = new HashMap<String, XUnitConverter>();
 
     static {
+        converters.put("jsunit", new JsUnitConverter());
     }
 
     public void convert(String converterId, File inputDirectory, File outputDirectory) throws UnknownConverterException, NoFileToConvertException {
