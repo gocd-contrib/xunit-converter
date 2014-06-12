@@ -1,6 +1,7 @@
 package com.tw.xunit.converter;
 
 import com.tw.xunit.converter.jsunit.JsUnitConverter;
+import com.tw.xunit.converter.nose.NoseConverter;
 import com.tw.xunit.exception.NoFileToConvertException;
 import com.tw.xunit.exception.UnknownConverterException;
 import com.tw.xunit.model.TestSuite;
@@ -19,6 +20,7 @@ public class TestReportConverter {
 
     static {
         converters.put("jsunit", new JsUnitConverter());
+        converters.put("nose", new NoseConverter());
     }
 
     public void convert(String converterId, File inputDirectory, File outputDirectory) throws UnknownConverterException, NoFileToConvertException {
@@ -40,7 +42,7 @@ public class TestReportConverter {
             try {
                 convertToXUnit(currentTestReport, converter, outputDirectory);
             } catch (Exception e) {
-                // report this
+                e.printStackTrace();
             }
         }
     }
