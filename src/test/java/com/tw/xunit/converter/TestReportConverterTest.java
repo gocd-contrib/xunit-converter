@@ -26,8 +26,9 @@ public class TestReportConverterTest {
     @Test
     public void shouldGetMatchingFilesCorrectly() throws Exception {
         File[] matchingFiles = new TestReportConverter().getMatchingFiles(resource("/sample-xunit-reports"), Arrays.asList(new String[]{"*.xml"}));
+        String[] matchingFileNames = {matchingFiles[0].getName(), matchingFiles[1].getName()};
         assertThat(matchingFiles.length, is(2));
-        assertThat(matchingFiles[0].getName(), is("1.xml"));
-        assertThat(matchingFiles[1].getName(), is("2.xml"));
+        assertThat(Arrays.asList(matchingFileNames).contains("1.xml"), is(true));
+        assertThat(Arrays.asList(matchingFileNames).contains("2.xml"), is(true));
     }
 }
