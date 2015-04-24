@@ -7,6 +7,7 @@ package com.tw.xunit.converter.mstest;
 import com.tw.xunit.converter.TestReportConverter;
 import com.tw.xunit.model.TestSuite;
 import com.tw.xunit.parser.XUnitParser;
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 
 import java.io.File;
@@ -21,8 +22,8 @@ public class MsTestConverterTest {
     public void testConvertToXUnitFormat() throws Exception {
         File outputDirectory = new File("/tmp/" + UUID.randomUUID());
         new TestReportConverter().convert("mstest", resource("/sample-mstest-reports"), outputDirectory);
-        File outputFile = new File(outputDirectory.getAbsoluteFile() + "/1.xml.xml");
+        File outputFile = new File(outputDirectory.getAbsoluteFile() + "/1.trx.xml");
         TestSuite testSuite = XUnitParser.parseTestSuiteXUnitXML(outputFile);
-        assertThat(testSuite.getTestCases().size(), is(330));
+        assertThat(testSuite.getTestCases().size(), is(142));
     }
 }

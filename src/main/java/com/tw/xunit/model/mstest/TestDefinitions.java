@@ -6,11 +6,15 @@ package com.tw.xunit.model.mstest;
 
 import org.simpleframework.xml.ElementList;
 
+import java.util.HashMap;
+
 import java.util.List;
 
 public class TestDefinitions {
     @ElementList(entry = "UnitTest", inline = true, required = false)
     private List<UnitTest> unitTests;
+
+    private HashMap<String,String> testIdClassMap;
 
     public TestDefinitions() {
     }
@@ -21,6 +25,19 @@ public class TestDefinitions {
 
     public List<UnitTest> getUnitTests() {return unitTests; }
     public void setUnitTests(List<UnitTest> unitTests) { this.unitTests = unitTests; }
+
+
+    public HashMap<String,String> getTestIdClassMap() {
+        if (testIdClassMap == null ) {
+            testIdClassMap = new HashMap<String, String>();
+
+            for (int i = 0; i < unitTests.size(); i++) {
+                testIdClassMap.put(unitTests.get(i).getId(), unitTests.get(i).getTestMethod().getClassNamePretty());
+            }
+        }
+        return testIdClassMap;
+        //return testIdClassMap.containsKey(testId) ? testIdClassMap.get(testId) : "Not Found";
+    }
 
     @Override
     public boolean equals(Object o) {

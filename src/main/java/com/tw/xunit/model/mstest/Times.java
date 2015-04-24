@@ -3,6 +3,7 @@ package com.tw.xunit.model.mstest;
 /**
  * Created by nhudacin on 4/23/2015.
  */
+import com.tw.xunit.converter.mstest.ConversionHelpers;
 import org.simpleframework.xml.Attribute;
 
 public class Times {
@@ -36,6 +37,26 @@ public class Times {
     public void setStart(String start) { this.start = start; }
     public String getFinish() { return finish; }
     public void setFinish(String finish) { this.finish = finish; }
+
+    public String getCreation_pretty(){
+        return ConversionHelpers.stringDateFormatter(creation) != null ? ConversionHelpers.stringDateFormatter(creation) : creation;
+    }
+
+    public String getStart_pretty(){
+        return ConversionHelpers.stringDateFormatter(start) != null ? ConversionHelpers.stringDateFormatter(start) : start;
+    }
+
+    public String getFinish_pretty(){
+        return ConversionHelpers.stringDateFormatter(finish) != null ? ConversionHelpers.stringDateFormatter(finish) : finish;
+    }
+
+    public String getQueueing_pretty(){
+        return ConversionHelpers.stringDateFormatter(queuing) != null ? ConversionHelpers.stringDateFormatter(queuing) : queuing;
+    }
+
+    public double getTotalTime() {
+        return ConversionHelpers.getDateDifference(start, finish);
+    }
 
     @Override
     public boolean equals(Object o) {

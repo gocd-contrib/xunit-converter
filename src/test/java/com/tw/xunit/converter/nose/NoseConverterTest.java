@@ -17,7 +17,7 @@ public class NoseConverterTest {
     public void testConvertToXUnitFormat() throws Exception {
         File outputDirectory = new File("/tmp/" + UUID.randomUUID());
         new TestReportConverter().convert("nose", resource("/sample-nose-reports"), outputDirectory);
-        File outputFile = new File(outputDirectory.getAbsoluteFile() + "/1.xml.xml");
+        File outputFile = new File(outputDirectory.getAbsoluteFile() + "/1.trx.xml");
         System.out.println(outputFile.getAbsolutePath());
         TestSuite testSuite = XUnitParser.parseTestSuiteXUnitXML(outputFile);
         assertThat(testSuite.getTestCases().size(), is(414));

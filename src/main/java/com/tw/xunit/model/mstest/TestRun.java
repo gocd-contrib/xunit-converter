@@ -4,15 +4,18 @@ package com.tw.xunit.model.mstest;
  * Created by nhudacin on 4/23/2015.
  */
 import com.tw.xunit.converter.jsunit.TestCases;
+import com.tw.xunit.converter.mstest.ConversionHelpers;
 import com.tw.xunit.model.Properties;
 import com.tw.xunit.model.Property;
 import com.tw.xunit.model.TestCase;
 import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
+import org.simpleframework.xml.Element;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Root(name = "TestRun", strict = false)
 public class TestRun {
@@ -28,42 +31,42 @@ public class TestRun {
     @Attribute(required = false)
     private String runUser;
 
-    @ElementList(entry = "TestSettings", inline = true, required = false)
-    private List<TestSettings> testSettingsList;
+    @Element(name = "TestSettings", required = false)
+    private TestSettings testSettings;
 
-    @ElementList(entry = "Times", inline = true, required = false)
-    private List<Times> timesList;
+    @Element(name = "Times", required = false)
+    private Times times;
 
-    @ElementList(entry = "ResultSummary", inline = true, required = false)
-    private List<ResultSummary> resultSummaryList;
+    @Element(name = "ResultSummary", required = false)
+    private ResultSummary resultSummary;
 
-    @ElementList(entry = "TestDefinitions", inline = true, required = false)
-    private List<TestDefinitions> testDefinitionsList;
+    @Element(name = "TestDefinitions", required = false)
+    private TestDefinitions testDefinitions;
 
-    @ElementList(entry = "TestLists", inline = true, required = false)
-    private List<TestLists> testListsList;
+    @Element(name = "TestLists", required = false)
+    private TestLists testLists;
 
-    @ElementList(entry = "TestEntries", inline = true, required = false)
-    private List<TestEntries> testEntriesList;
+    @Element(name = "TestEntries", required = false)
+    private TestEntries testEntries;
 
-    @ElementList(entry = "Results", inline = true, required = false)
-    private List<Results> resultsList;
+    @Element(name = "Results", required = false)
+    private Results results;
 
     public TestRun() {
     }
 
-    public TestRun(String xmlns, String id, String name, String runUser, List<TestSettings> testSettingsList, List<Times> timesList, List<ResultSummary> resultSummaryList, List<TestDefinitions> testDefinitionsList, List<TestLists> testListsList, List<TestEntries> testEntriesList, List<Results> resultsList) {
+    public TestRun(String xmlns, String id, String name, String runUser, TestSettings testSettings, Times times, ResultSummary resultSummary, TestDefinitions testDefinitions, TestLists testLists, TestEntries testEntries, Results results) {
         this.xmlns = xmlns;
         this.id = id;
         this.name = name;
         this.runUser = runUser;
-        this.testSettingsList = testSettingsList;
-        this.timesList = timesList;
-        this.resultSummaryList = resultSummaryList;
-        this.testDefinitionsList = testDefinitionsList;
-        this.testListsList = testListsList;
-        this.testEntriesList = testEntriesList;
-        this.resultsList = resultsList;
+        this.testSettings = testSettings;
+        this.times = times;
+        this.resultSummary = resultSummary;
+        this.testDefinitions = testDefinitions;
+        this.testLists = testLists;
+        this.testEntries = testEntries;
+        this.results = results;
     }
 
     public String getXmlns() {return xmlns; }
@@ -74,45 +77,40 @@ public class TestRun {
     public void setId(String id) {this.id = id; }
     public String getRunUser() {return runUser; }
     public void setRunUser(String runUser) {this.runUser = runUser; }
-    public List<TestSettings> getTestSettingsList() {return testSettingsList;}
-    public void setTestSettingsList(List<TestSettings> testSettingsList) { this.testSettingsList = testSettingsList; }
-    public List<Times> getTimesList() { return timesList; }
-    public void setTimesList(List<Times> timesList) { this.timesList = timesList;}
-    public List<ResultSummary> getResultSummaryList() { return resultSummaryList; }
-    public void setResultSummaryList(List<ResultSummary> resultSummaryList) { this.resultSummaryList = resultSummaryList; }
-    public List<TestDefinitions> getTestDefinitionsList() { return testDefinitionsList; }
-    public void setTestDefinitionsList(List<TestDefinitions> testDefinitionsList) { this.testDefinitionsList = testDefinitionsList; }
-    public List<TestLists> getTestListsList() { return testListsList; }
-    public void setTestListsList(List<TestLists> testListsList){ this.testListsList = testListsList; }
-    public List<TestEntries> getTestEntriesList() { return testEntriesList; }
-    public void setTestEntriesList(List<TestEntries> testEntriesList) { this.testEntriesList = testEntriesList; }
-    public List<Results> getResultsList() { return resultsList; }
-    public void setResultsList(List<Results> resultsList) { this.resultsList = resultsList; }
+    public TestSettings getTestSettings() {return testSettings;}
+    public void setTestSettings(TestSettings testSettings) { this.testSettings = testSettings; }
+    public Times getTimes() { return times; }
+    public void setTimes(Times times) { this.times = times;}
+    public ResultSummary getResultSummary() { return resultSummary; }
+    public void setResultSummary(ResultSummary resultSummary) { this.resultSummary = resultSummary; }
+    public TestDefinitions getTestDefinitions() { return testDefinitions; }
+    public void setTestDefinitions(TestDefinitions testDefinitions) { this.testDefinitions = testDefinitions; }
+    public TestLists getTestLists() { return testLists; }
+    public void setTestLists(TestLists testLists){ this.testLists = testLists; }
+    public TestEntries getTestEntries() { return testEntries; }
+    public void setTestEntries(TestEntries testEntries) { this.testEntries = testEntries; }
+    public Results getResults() { return results; }
+    public void setResults(Results results) { this.results = results; }
 
     /* Methods to handle conversion to xunit */
-    public String getConverted_Name() {
-        return this.name;
-    }
-
-    /* time will be tough, need to calculate it */
+    public double getTotalTime() { return this.times.getTotalTime();}
     public int getConverted_tests() {
-        return this.resultSummaryList.get(0).getCountersList().get(0).total;
+        return this.resultSummary.getCounters().total;
     }
     public int getConverted_failures() {
-        return this.resultSummaryList.get(0).getCountersList().get(0).failed;
+        return this.resultSummary.getCounters().failed;
     }
     public int getConverted_errors() {
-        return this.resultSummaryList.get(0).getCountersList().get(0).error;
+        return this.resultSummary.getCounters().error;
     }
     public int getConverted_disabled() {
-        return this.resultSummaryList.get(0).getCountersList().get(0).inconclusive;
+        return this.resultSummary.getCounters().inconclusive;
     }
     public int getConverted_skipped() {
-        return this.resultSummaryList.get(0).getCountersList().get(0).notExecuted;
+        return this.resultSummary.getCounters().notExecuted;
     }
-    public String getConverted_timestamp() {
-        return this.timesList.get(0).getCreation();
-    }
+    public String getConverted_timestamp() { return this.times.getCreation_pretty(); }
+    public String getConverted_hostname() {return this.name.substring(0,this.name.indexOf(" ")); }
 
     /* Don't know what assertions,packages,or files look like */
 
@@ -121,26 +119,18 @@ public class TestRun {
         ArrayList<Properties> propertiesList = new ArrayList<Properties>();
 
         if(this.id != null) { propertyList.add(new Property("id",id)); }
-
         if(this.name != null) { propertyList.add(new Property("name",name));}
-
         if(this.runUser != null) {propertyList.add(new Property("runuser",runUser));}
+        if(this.times.getStart() != null) { propertyList.add(new Property("start",this.times.getStart_pretty())); }
+        if(this.times.getFinish() != null) { propertyList.add(new Property("finish",this.times.getFinish_pretty())); }
 
-        if(this.timesList != null) {
-            String start = timesList.get(0).getStart();
-            String finish = timesList.get(0).getFinish();
-
-            if (start != null) { propertyList.add(new Property("start",start)); }
-            if (finish != null) {propertyList.add(new Property("finish",finish)); }
-        }
-
-         propertiesList.add(new Properties(propertyList));
+        propertiesList.add(new Properties(propertyList));
 
         return propertiesList;
     }
 
-    public List<TestCase> getConverted_testcases() {
-        return resultsList.get(0).getConverted_testcases();
+    public List<TestCase> getTestCases() {
+        return this.results.getTestCases(this.testDefinitions.getTestIdClassMap());
     }
 
     @Override
@@ -154,13 +144,13 @@ public class TestRun {
         if(id != null ? !id.equals(that.id) : that.id != null) return false;
         if(name != null ? !name.equals(that.name) : that.name != null) return false;
         if(runUser != null ? !runUser.equals(that.runUser) : that.runUser != null) return false;
-        if(testSettingsList != null ? !testSettingsList.equals(that.testSettingsList) : that.testSettingsList != null) return false;
-        if(timesList != null ? !timesList.equals(that.timesList) : that.timesList != null) return false;
-        if(resultSummaryList != null ? !resultSummaryList.equals(that.resultSummaryList) : that.resultSummaryList != null) return false;
-        if(testDefinitionsList != null ? !testDefinitionsList.equals(that.testDefinitionsList) : that.testDefinitionsList != null) return false;
-        if(testListsList != null ? !testListsList.equals(that.testListsList) : that.testListsList != null) return false;
-        if(testEntriesList != null ? !runUser.equals(that.testEntriesList) : that.testEntriesList != null) return false;
-        if(resultsList != null ? !resultsList.equals(that.resultsList) : that.resultsList != null) return false;
+        if(testSettings != null ? !testSettings.equals(that.testSettings) : that.testSettings != null) return false;
+        if(times != null ? !times.equals(that.times) : that.times != null) return false;
+        if(resultSummary != null ? !resultSummary.equals(that.resultSummary) : that.resultSummary != null) return false;
+        if(testDefinitions != null ? !testDefinitions.equals(that.testDefinitions) : that.testDefinitions != null) return false;
+        if(testLists != null ? !testLists.equals(that.testLists) : that.testLists != null) return false;
+        if(testEntries != null ? !testEntries.equals(that.testEntries) : that.testEntries != null) return false;
+        if(results != null ? !results.equals(that.results) : that.results != null) return false;
 
         return true;
     }
@@ -172,13 +162,13 @@ public class TestRun {
         result = 31 * result + (id != null ? id.hashCode() : 0);
         result = 31 * result + (xmlns != null ? xmlns.hashCode() : 0);
         result = 31 * result + (runUser != null ? runUser.hashCode() : 0);
-        result = 31 * result + (testSettingsList != null ? testSettingsList.hashCode() : 0);
-        result = 31 * result + (timesList != null ? timesList.hashCode() : 0);
-        result = 31 * result + (resultSummaryList != null ? resultSummaryList.hashCode() : 0);
-        result = 31 * result + (testDefinitionsList != null ? testDefinitionsList.hashCode() : 0);
-        result = 31 * result + (testListsList != null ? testListsList.hashCode() : 0);
-        result = 31 * result + (testEntriesList != null ? testEntriesList.hashCode() : 0);
-        result = 31 * result + (resultsList != null ? resultsList.hashCode() : 0);
+        result = 31 * result + (testSettings != null ? testSettings.hashCode() : 0);
+        result = 31 * result + (times != null ? times.hashCode() : 0);
+        result = 31 * result + (resultSummary != null ? resultSummary.hashCode() : 0);
+        result = 31 * result + (testDefinitions != null ? testDefinitions.hashCode() : 0);
+        result = 31 * result + (testLists != null ? testLists.hashCode() : 0);
+        result = 31 * result + (testEntries != null ? testEntries.hashCode() : 0);
+        result = 31 * result + (results != null ? results.hashCode() : 0);
 
         return result;
     }
