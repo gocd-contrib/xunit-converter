@@ -1,6 +1,7 @@
 package com.tw.xunit.converter;
 
 import com.tw.xunit.converter.jsunit.JsUnitConverter;
+import com.tw.xunit.converter.mstest.MsTestConverter;
 import com.tw.xunit.converter.nose.NoseConverter;
 import com.tw.xunit.exception.NoFileToConvertException;
 import com.tw.xunit.exception.UnknownConverterException;
@@ -21,6 +22,7 @@ public class TestReportConverter {
     static {
         converters.put("jsunit", new JsUnitConverter());
         converters.put("nose", new NoseConverter());
+        converters.put("mstest", new MsTestConverter());
     }
 
     public void convert(String converterId, File inputDirectory, File outputDirectory) throws UnknownConverterException, NoFileToConvertException {
