@@ -27,7 +27,7 @@ public class DebugTrace {
     }
 
     /* Methods to handle conversion to xunit */
-    public SysOut getConverted_SysOut() {
+    public SysOut getSysout() {
         return new SysOut(value);
     }
 

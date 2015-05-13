@@ -17,7 +17,7 @@ import java.util.List;
 public class MsTestConverter implements XUnitConverter {
     @Override
     public List<String> testReportFilePattern() {
-        return Arrays.asList("*.xml");
+        return Arrays.asList("*.trx");
     }
 
     @Override
@@ -25,7 +25,6 @@ public class MsTestConverter implements XUnitConverter {
         Serializer serializer = new Persister();
 
         TestRun tr = serializer.read(TestRun.class, file);
-        tr.getResultsList();
-        return new TestSuite(tr.getConverted_Name(), 0, tr.getConverted_tests(),tr.getConverted_failures(), tr.getConverted_errors(), tr.getConverted_disabled(), tr.getConverted_skipped(), tr.getConverted_timestamp(), null, tr.getId(), null, null, null, tr.getConverted_properties(), tr.getConverted_testcases(), null, null);
+        return new TestSuite(tr.getName(), tr.getTotalTime(), tr.getConverted_tests(),tr.getConverted_failures(),tr.getConverted_errors(), tr.getConverted_disabled(), tr.getConverted_skipped(),tr.getConverted_timestamp(), tr.getConverted_hostname(), tr.getId(), null, null, null, tr.getConverted_properties(),tr.getTestCases(), null, null);
     }
 }

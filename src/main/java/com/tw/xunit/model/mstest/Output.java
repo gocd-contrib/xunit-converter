@@ -7,53 +7,33 @@ package com.tw.xunit.model.mstest;
 import com.tw.xunit.model.*;
 import com.tw.xunit.model.Error;
 import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Element;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Output {
-    @ElementList(entry = "DebugTrace", inline = true, required = false)
-    private List<DebugTrace> debugTraceList;
+    @Element(name = "DebugTrace", required = false)
+    private DebugTrace debugTrace;
 
-    @ElementList(entry = "ErrorInfo", inline = true, required = false)
-    private List<ErrorInfo> errorInfoList;
+    @Element(name = "ErrorInfo", required = false)
+    private ErrorInfo errorInfo;
 
     public Output() {
     }
 
-    public  Output(List<DebugTrace> debugTraceList, List<ErrorInfo> errorInfoList) {
-        this.debugTraceList = debugTraceList;
-        this.errorInfoList = errorInfoList;
+    public  Output(DebugTrace debugTrace, ErrorInfo errorInfo) {
+        this.debugTrace = debugTrace;
+        this.errorInfo = errorInfo;
     }
 
-    public List<DebugTrace> getDebugTraceList() {return debugTraceList;}
+    public DebugTrace getDebugTrace() {return debugTrace;}
 
-    public void setDebugTraceList(List<DebugTrace> debugTraceList) {this.debugTraceList = debugTraceList;}
+    public void setDebugTrace(DebugTrace debugTrace) {this.debugTrace = debugTrace;}
 
-    public List<ErrorInfo> getErrorInfoList() {return errorInfoList;}
+    public ErrorInfo getErrorInfo() {return errorInfo;}
 
-    public void setErrorInfoList(List<ErrorInfo> errorInfoList) {this.errorInfoList = errorInfoList; }
-
-    /* Methods to handle conversion to xunit */
-    public List<SysOut> getConverted_sysout() {
-        ArrayList<SysOut> sysOuts = new ArrayList<SysOut>();
-
-        for (int i = 0; i < debugTraceList.size(); i++) {
-            sysOuts.add(debugTraceList.get(i).getConverted_SysOut());
-        }
-
-        return sysOuts;
-    }
-
-    public List<Error> getConverted_error() {
-        ArrayList<Error> errors = new ArrayList<Error>();
-
-        for (int i = 0; i< errorInfoList.size(); i++) {
-            errors.add(errorInfoList.get(i).getConverted_Error());
-        }
-
-        return  errors;
-    }
+    public void setErrorInfo(ErrorInfo errorInfo) {this.errorInfo = errorInfo; }
 
 
     @Override
@@ -61,18 +41,18 @@ public class Output {
         if (this == o) return true;
         if (!(o instanceof Output)) return false;
 
-        Output output = (Output) o;
+        Output that = (Output) o;
 
-        if (debugTraceList != null ? !debugTraceList.equals(output.debugTraceList) : output.debugTraceList != null) return false;
-        if (errorInfoList != null ? !errorInfoList.equals(output.errorInfoList) : output.errorInfoList != null) return false;
+        if (debugTrace != null ? !debugTrace.equals(that.debugTrace) : that.debugTrace != null) return false;
+        if (errorInfo != null ? !errorInfo.equals(that.errorInfo) : that.errorInfo != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = debugTraceList != null ? debugTraceList.hashCode():0;
-        result = 31 * result + (errorInfoList != null ? errorInfoList.hashCode():0);
+        int result = debugTrace != null ? debugTrace.hashCode():0;
+        result = 31 * result + (errorInfo != null ? errorInfo.hashCode():0);
         return result;
     }
 }

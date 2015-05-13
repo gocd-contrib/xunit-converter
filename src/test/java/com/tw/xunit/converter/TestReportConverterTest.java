@@ -28,7 +28,7 @@ public class TestReportConverterTest {
         File[] matchingFiles = new TestReportConverter().getMatchingFiles(resource("/sample-xunit-reports"), Arrays.asList(new String[]{"*.xml"}));
         String[] matchingFileNames = {matchingFiles[0].getName(), matchingFiles[1].getName()};
         assertThat(matchingFiles.length, is(2));
-        assertThat(Arrays.asList(matchingFileNames).contains("1.xml"), is(true));
+        assertThat(Arrays.asList(matchingFileNames).contains("1.trx"), is(true));
         assertThat(Arrays.asList(matchingFileNames).contains("2.xml"), is(true));
     }
 }

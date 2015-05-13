@@ -6,8 +6,11 @@ package com.tw.xunit.model.mstest;
 
 import com.tw.xunit.model.TestCase;
 import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Element;
 
+import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Results {
@@ -24,11 +27,11 @@ public class Results {
     public  void setResults(List<UnitTestResult> results) { this.results = results; }
 
     /* Methods to handle conversion to xunit */
-    public List<TestCase> getConverted_testcases() {
+    public List<TestCase> getTestCases(HashMap<String,String> classNameMap) {
         ArrayList<TestCase> testCases = new ArrayList<TestCase>();
 
-        for (int i = 0; i < results.size(); i++) {
-            testCases.add(results.get(i).getConverted_TestCase());
+        for (int i =0; i< results.size(); i++) {
+            testCases.add(results.get(i).getTestCase(classNameMap));
         }
 
         return testCases;
@@ -39,9 +42,9 @@ public class Results {
         if (this == o) return true;
         if(!(o instanceof Results)) return false;
 
-        Results results = (Results) o;
+        Results that = (Results) o;
         /* might be something wrong with this line. It's late*/
-        if (results != null ? !results.equals(results.results) : results.results != null) return false;
+        if (results != null ? !results.equals(that.results) : that.results != null) return false;
 
         return true;
     }

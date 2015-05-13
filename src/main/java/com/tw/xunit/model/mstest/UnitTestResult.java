@@ -4,13 +4,15 @@ package com.tw.xunit.model.mstest;
  * Created by nhudacin on 4/22/2015.
  */
 
+import com.tw.xunit.converter.mstest.ConversionHelpers;
 import com.tw.xunit.model.*;
 import com.tw.xunit.model.Error;
 import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Element;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 public class UnitTestResult {
 
@@ -47,13 +49,15 @@ public class UnitTestResult {
     @Attribute(required = false)
     private String relativeResultsDirectory;
 
-    @ElementList(entry = "Output", inline = true, required = false)
-    private List<Output>  outputs;
+    @Element(name = "Output", required = false)
+    private Output output;
+
+    private double convertedDuration;
 
     public UnitTestResult() {
     }
 
-    public UnitTestResult(String executionId, String testId, String testName, String computerName, String duration, String startTime, String endTime, String testType, String outcome, String testListId, String relativeResultsDirectory, List<Output> outputs ) {
+    public UnitTestResult(String executionId, String testId, String testName, String computerName, String duration, String startTime, String endTime, String testType, String outcome, String testListId, String relativeResultsDirectory, Output output ) {
        this.executionId = executionId;
         this.testId = testId;
         this.testName = testName;
@@ -65,7 +69,7 @@ public class UnitTestResult {
         this.outcome = outcome;
         this.testListId = testListId;
         this.relativeResultsDirectory = relativeResultsDirectory;
-        this.outputs = outputs;
+        this.output = output;
     }
 
     public String getExecutionId() {return executionId;}
@@ -77,7 +81,7 @@ public class UnitTestResult {
     public String getComputerName() {return computerName ;}
     public void setComputerName(String computerName) {this.computerName = computerName ;}
     public String getDuration() {return duration;}
-    public void setDuration(String duration) {this.duration = duration ;}
+    public void setDuration(String duration) { this.duration = duration; }
     public String getStartTime() {return startTime;}
     public void setStartTime(String startTime) {this.startTime = startTime;}
     public String getEndTime() {return endTime ;}
@@ -90,39 +94,56 @@ public class UnitTestResult {
     public void setTestListId(String testListId ) {this.testListId = testListId ;}
     public String getRelativeResultsDirectory() {return relativeResultsDirectory;}
     public void setRelativeResultsDirectory(String relativeResultsDirectory ) {this.relativeResultsDirectory = relativeResultsDirectory ;}
-    public List<Output> getOutputs() {return outputs;}
-    public void setOutputs(List<Output> outputs ) {this.outputs = outputs;}
+    public Output getOutput() {return output;}
+    public void setOutput(Output output ) {this.output = output;}
+
+    public double getConvertedDuration() { return ConversionHelpers.durationConverter(duration);}
+    public void setConvertedDuration(double d) { this.convertedDuration = d; }
 
     /* Methods to handle conversion to xunit */
-    public TestCase getConverted_TestCase() {
+    public TestCase getTestCase(HashMap<String,String> classNameMap) {
         String name = this.testName;
-        /* Class name for MSTest is a unit id */
-        String classname = this.testId;
+        String classname = classNameMap.containsKey(testId) ? classNameMap.get(testId) : "Not Found";
         String status = this.outcome;
-        List<Error> errorTests = this.outputs.get(0).getConverted_error();
-        List<SysOut> sysOuts = this.outputs.get(0).getConverted_sysout();
 
-        return new TestCase(name, 0, classname, status, null, null, null, null,null,errorTests, null, sysOuts, null );
+        List<Error> errorTests = new ArrayList<Error>();
+        List<SysOut> sysOuts = new ArrayList<SysOut>();
+
+        if(this.output != null) {
+            if (this.output.getErrorInfo() != null)
+                errorTests.add(this.output.getErrorInfo().getError());
+
+            if(this.output.getDebugTrace() != null)
+                sysOuts.add(this.output.getDebugTrace().getSysout());
+        }
+
+        double time = ConversionHelpers.durationConverter(duration);
+        double newTime = ConversionHelpers.getDateDifference(startTime, endTime);
+
+        return new TestCase(name, newTime, classname, status, null, null, null, null,null,errorTests, null, sysOuts, null );
     }
+
+
 
     @Override
     public boolean equals(Object o){
         if (this == o) return true;
         if(!(o instanceof UnitTestResult)) return false;
 
-        UnitTestResult unitTestResult = (UnitTestResult) o;
-        if (executionId != null? !executionId.equals(unitTestResult.executionId) : unitTestResult.executionId !=null) return false;
-        if (testId != null? !testId.equals(unitTestResult.testId) : unitTestResult.testId !=null) return false;
-        if (testName != null? !testName.equals(unitTestResult.testName) : unitTestResult.testName !=null) return false;
-        if (computerName != null? !computerName.equals(unitTestResult.computerName) : unitTestResult.computerName !=null) return false;
-        if (duration != null? !duration.equals(unitTestResult.duration) : unitTestResult.duration !=null) return false;
-        if (startTime != null? !startTime.equals(unitTestResult.startTime) : unitTestResult.startTime !=null) return false;
-        if (endTime != null? !endTime.equals(unitTestResult.endTime) : unitTestResult.endTime !=null) return false;
-        if (testType != null? !testType.equals(unitTestResult.testType) : unitTestResult.testType !=null) return false;
-        if (outcome != null? !outcome.equals(unitTestResult.outcome) : unitTestResult.outcome !=null) return false;
-        if (testListId != null? !testListId.equals(unitTestResult.testListId) : unitTestResult.testListId !=null) return false;
-        if (relativeResultsDirectory != null? !relativeResultsDirectory.equals(unitTestResult.relativeResultsDirectory) : unitTestResult.relativeResultsDirectory !=null) return false;
-        if (outputs != null? !outputs.equals(unitTestResult.outputs) : unitTestResult.outputs !=null) return false;
+        UnitTestResult that = (UnitTestResult) o;
+
+        if (executionId != null? !executionId.equals(that.executionId) : that.executionId !=null) return false;
+        if (testId != null? !testId.equals(that.testId) : that.testId !=null) return false;
+        if (testName != null? !testName.equals(that.testName) : that.testName !=null) return false;
+        if (computerName != null? !computerName.equals(that.computerName) : that.computerName !=null) return false;
+        if (duration != null? !duration.equals(that.duration) : that.duration !=null) return false;
+        if (startTime != null? !startTime.equals(that.startTime) : that.startTime !=null) return false;
+        if (endTime != null? !endTime.equals(that.endTime) : that.endTime !=null) return false;
+        if (testType != null? !testType.equals(that.testType) : that.testType !=null) return false;
+        if (outcome != null? !outcome.equals(that.outcome) : that.outcome !=null) return false;
+        if (testListId != null? !testListId.equals(that.testListId) : that.testListId !=null) return false;
+        if (relativeResultsDirectory != null? !relativeResultsDirectory.equals(that.relativeResultsDirectory) : that.relativeResultsDirectory !=null) return false;
+        if (output != null? !output.equals(that.output) : that.output !=null) return false;
         return true;
     }
 
@@ -139,7 +160,7 @@ public class UnitTestResult {
         result = 31 * result + (outcome != null ? outcome.hashCode() : 0);
         result = 31 * result + (testListId != null ? testListId.hashCode() : 0);
         result = 31 * result + (relativeResultsDirectory != null ? relativeResultsDirectory.hashCode() : 0);
-        result = 31 * result + (outputs != null ? outputs.hashCode() : 0);
+        result = 31 * result + (output != null ? output.hashCode() : 0);
         return result;
     }
 }
