@@ -19,11 +19,20 @@ import static org.hamcrest.core.Is.is;
 
 public class MsTestConverterTest {
     @Test
-    public void testConvertToXUnitFormat() throws Exception {
+    public void testConvertDBResultToXUnitFormat() throws Exception {
         File outputDirectory = new File("/tmp/" + UUID.randomUUID());
-        new TestReportConverter().convert("mstest", resource("/sample-mstest-reports"), outputDirectory);
+        new TestReportConverter().convert("mstest", resource("/sample-mstest-reports/database-result"), outputDirectory);
         File outputFile = new File(outputDirectory.getAbsoluteFile() + "/1.trx.xml");
         TestSuite testSuite = XUnitParser.parseTestSuiteXUnitXML(outputFile);
         assertThat(testSuite.getTestCases().size(), is(142));
+    }
+
+    @Test
+    public void testConvertWebResultToXUnitFormat() throws Exception {
+        File outputDirectory = new File("/tmp/" + UUID.randomUUID());
+        new TestReportConverter().convert("mstest", resource("/sample-mstest-reports/web-app-result"), outputDirectory);
+        File outputFile = new File(outputDirectory.getAbsoluteFile() + "/1.trx.xml");
+        TestSuite testSuite = XUnitParser.parseTestSuiteXUnitXML(outputFile);
+        assertThat(testSuite.getTestCases().size(), is(2));
     }
 }

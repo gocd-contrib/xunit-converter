@@ -107,14 +107,15 @@ public class UnitTestResult {
         String status = this.outcome;
 
         List<Error> errorTests = new ArrayList<Error>();
-
-        if(this.output.getErrorInfo() != null)
-            errorTests.add(this.output.getErrorInfo().getError());
-
         List<SysOut> sysOuts = new ArrayList<SysOut>();
 
-        if(this.output.getDebugTrace() != null)
-            sysOuts.add(this.output.getDebugTrace().getSysout());
+        if(this.output != null) {
+            if (this.output.getErrorInfo() != null)
+                errorTests.add(this.output.getErrorInfo().getError());
+
+            if(this.output.getDebugTrace() != null)
+                sysOuts.add(this.output.getDebugTrace().getSysout());
+        }
 
         double time = ConversionHelpers.durationConverter(duration);
         double newTime = ConversionHelpers.getDateDifference(startTime, endTime);
