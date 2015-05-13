@@ -17,7 +17,7 @@ public class JsUnitConverterTest {
     public void testConvertToXUnitFormat() throws Exception {
         File outputDirectory = new File("/tmp/" + UUID.randomUUID());
         new TestReportConverter().convert("jsunit", resource("/sample-jsunit-reports"), outputDirectory);
-        File outputFile = new File(outputDirectory.getAbsoluteFile() + "/1.trx.xml");
+        File outputFile = new File(outputDirectory.getAbsoluteFile() + "/1.xml.xml");
         TestSuite testSuite = XUnitParser.parseTestSuiteXUnitXML(outputFile);
         assertThat(testSuite.getTestCases().size(), is(330));
     }
