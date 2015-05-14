@@ -10,7 +10,6 @@ Library to convert test reports to XUnit format
 * MsTest
 
 ##Project Contribution
-I'm purposefully trying to be as basic as possible here since I had a lot of trouble setting up and developing in this project, not because there was anything wrong with the project itself but because I am so new to java development.
 
 ###Prerequisites
 * JavaIDE - I'm using IntellJ IDEA (14.1.2)
