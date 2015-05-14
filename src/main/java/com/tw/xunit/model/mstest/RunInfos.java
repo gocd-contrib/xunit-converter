@@ -19,19 +19,25 @@ public class RunInfos {
         this.runInfoList = runInfoList;
     }
 
-    public List<RunInfo> getRunInfoList() { return runInfoList; }
-    public void setRunInfoList(List<RunInfo> runInfoList) { this.runInfoList = runInfoList; }
+    public List<RunInfo> getRunInfoList() {
+        return runInfoList;
+    }
+
+    public void setRunInfoList(List<RunInfo> runInfoList) {
+        this.runInfoList = runInfoList;
+    }
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (this == o) return true;
-        if(!(o instanceof RunInfos)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        RunInfos that = (RunInfos) o;
+        RunInfos runInfos = (RunInfos) o;
 
-        if(runInfoList != null ? !runInfoList.equals(that.runInfoList) : that.runInfoList != null) return false;
+        if (runInfoList != null ? !runInfoList.equals(runInfos.runInfoList) : runInfos.runInfoList != null)
+            return false;
 
-        return  true;
+        return true;
     }
 
     @Override

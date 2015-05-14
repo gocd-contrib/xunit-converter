@@ -17,17 +17,22 @@ public class TestCategoryItem {
         this.TestCategory = TestCategory;
     }
 
-    public String getTestCategory() { return TestCategory; }
-    public void setTestCategory(String TestCategory) { this.TestCategory = TestCategory; }
+    public String getTestCategory() {
+        return TestCategory;
+    }
+
+    public void setTestCategory(String TestCategory) {
+        this.TestCategory = TestCategory;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if(!(o instanceof TestCategoryItem)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         TestCategoryItem that = (TestCategoryItem) o;
 
-        if(TestCategory != null ? !TestCategory.equals(that.TestCategory) : that.TestCategory != null) return false;
+        if (TestCategory != null ? !TestCategory.equals(that.TestCategory) : that.TestCategory != null) return false;
 
         return true;
     }

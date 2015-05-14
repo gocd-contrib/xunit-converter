@@ -23,46 +23,67 @@ public class RunInfo {
     public RunInfo() {
     }
 
-    public RunInfo(String computerName, String outcome, String timestamp, Text text){
+    public RunInfo(String computerName, String outcome, String timestamp, Text text) {
         this.computerName = computerName;
         this.outcome = outcome;
         this.timestamp = timestamp;
         this.text = text;
     }
 
-    public String getComputerName() { return computerName; }
-    public void setComputerName(String computerName) { this.computerName = computerName; }
-    public String getOutcome() { return outcome; }
-    public void setOutcome(String outcome) { this.outcome = outcome; }
-    public String getTimestamp() { return timestamp; }
-    public void setTimestamp(String timestamp) { this.timestamp = timestamp; }
-    public Text getText() { return text; }
-    public void setText(Text text) { this.text = text; }
+    public String getComputerName() {
+        return computerName;
+    }
+
+    public void setComputerName(String computerName) {
+        this.computerName = computerName;
+    }
+
+    public String getOutcome() {
+        return outcome;
+    }
+
+    public void setOutcome(String outcome) {
+        this.outcome = outcome;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public Text getText() {
+        return text;
+    }
+
+    public void setText(Text text) {
+        this.text = text;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if(!(o instanceof RunInfo)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        RunInfo that = (RunInfo) o;
+        RunInfo runInfo = (RunInfo) o;
 
-        if(computerName != null ? !computerName.equals(that.computerName) : that.computerName != null) return false;
-        if(outcome != null ? !outcome.equals(that.outcome) : that.outcome != null) return false;
-        if(timestamp != null ? !timestamp.equals(that.timestamp) : that.timestamp != null) return false;
-        if(text != null ? !text.equals(that.text) : that.text != null) return false;
+        if (computerName != null ? !computerName.equals(runInfo.computerName) : runInfo.computerName != null)
+            return false;
+        if (outcome != null ? !outcome.equals(runInfo.outcome) : runInfo.outcome != null) return false;
+        if (text != null ? !text.equals(runInfo.text) : runInfo.text != null) return false;
+        if (timestamp != null ? !timestamp.equals(runInfo.timestamp) : runInfo.timestamp != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        result = computerName != null ? computerName.hashCode() : 0;
+        int result = computerName != null ? computerName.hashCode() : 0;
         result = 31 * result + (outcome != null ? outcome.hashCode() : 0);
         result = 31 * result + (timestamp != null ? timestamp.hashCode() : 0);
         result = 31 * result + (text != null ? text.hashCode() : 0);
-
         return result;
     }
-
 }

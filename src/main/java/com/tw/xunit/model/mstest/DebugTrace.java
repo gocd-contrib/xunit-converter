@@ -14,7 +14,7 @@ public class DebugTrace {
     public DebugTrace() {
     }
 
-    public  DebugTrace(String value) {
+    public DebugTrace(String value) {
         this.value = value;
     }
 
@@ -34,17 +34,17 @@ public class DebugTrace {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof DebugTrace)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        DebugTrace debugTrace = (DebugTrace) o;
+        DebugTrace that = (DebugTrace) o;
 
-        if (value != null ? !value.equals(debugTrace.value) : debugTrace.value != null) return false;
+        if (value != null ? !value.equals(that.value) : that.value != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return value != null ? value.hashCode():0;
+        return value != null ? value.hashCode() : 0;
     }
 }

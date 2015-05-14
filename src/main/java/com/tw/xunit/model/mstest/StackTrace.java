@@ -28,11 +28,11 @@ public class StackTrace {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof StackTrace)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        StackTrace stackTrace = (StackTrace) o;
+        StackTrace that = (StackTrace) o;
 
-        if (value != null ? !value.equals(stackTrace.value) : stackTrace.value != null) return false;
+        if (value != null ? !value.equals(that.value) : that.value != null) return false;
 
         return true;
     }

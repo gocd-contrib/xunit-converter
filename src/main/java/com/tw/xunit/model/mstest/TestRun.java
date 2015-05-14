@@ -3,19 +3,16 @@ package com.tw.xunit.model.mstest;
 /**
  * Created by nhudacin on 4/23/2015.
  */
-import com.tw.xunit.converter.jsunit.TestCases;
-import com.tw.xunit.converter.mstest.ConversionHelpers;
+
 import com.tw.xunit.model.Properties;
 import com.tw.xunit.model.Property;
 import com.tw.xunit.model.TestCase;
 import org.simpleframework.xml.Attribute;
-import org.simpleframework.xml.Root;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
-import java.util.Map;
 
 @Root(name = "TestRun", strict = false)
 public class TestRun {
@@ -69,48 +66,126 @@ public class TestRun {
         this.results = results;
     }
 
-    public String getXmlns() {return xmlns; }
-    public void setXmlns(String xmlns) {this.xmlns = xmlns; }
-    public String getName() {return name; }
-    public void setName(String name) {this.name = name; }
-    public String getId() {return id; }
-    public void setId(String id) {this.id = id; }
-    public String getRunUser() {return runUser; }
-    public void setRunUser(String runUser) {this.runUser = runUser; }
-    public TestSettings getTestSettings() {return testSettings;}
-    public void setTestSettings(TestSettings testSettings) { this.testSettings = testSettings; }
-    public Times getTimes() { return times; }
-    public void setTimes(Times times) { this.times = times;}
-    public ResultSummary getResultSummary() { return resultSummary; }
-    public void setResultSummary(ResultSummary resultSummary) { this.resultSummary = resultSummary; }
-    public TestDefinitions getTestDefinitions() { return testDefinitions; }
-    public void setTestDefinitions(TestDefinitions testDefinitions) { this.testDefinitions = testDefinitions; }
-    public TestLists getTestLists() { return testLists; }
-    public void setTestLists(TestLists testLists){ this.testLists = testLists; }
-    public TestEntries getTestEntries() { return testEntries; }
-    public void setTestEntries(TestEntries testEntries) { this.testEntries = testEntries; }
-    public Results getResults() { return results; }
-    public void setResults(Results results) { this.results = results; }
+    public String getXmlns() {
+        return xmlns;
+    }
+
+    public void setXmlns(String xmlns) {
+        this.xmlns = xmlns;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getRunUser() {
+        return runUser;
+    }
+
+    public void setRunUser(String runUser) {
+        this.runUser = runUser;
+    }
+
+    public TestSettings getTestSettings() {
+        return testSettings;
+    }
+
+    public void setTestSettings(TestSettings testSettings) {
+        this.testSettings = testSettings;
+    }
+
+    public Times getTimes() {
+        return times;
+    }
+
+    public void setTimes(Times times) {
+        this.times = times;
+    }
+
+    public ResultSummary getResultSummary() {
+        return resultSummary;
+    }
+
+    public void setResultSummary(ResultSummary resultSummary) {
+        this.resultSummary = resultSummary;
+    }
+
+    public TestDefinitions getTestDefinitions() {
+        return testDefinitions;
+    }
+
+    public void setTestDefinitions(TestDefinitions testDefinitions) {
+        this.testDefinitions = testDefinitions;
+    }
+
+    public TestLists getTestLists() {
+        return testLists;
+    }
+
+    public void setTestLists(TestLists testLists) {
+        this.testLists = testLists;
+    }
+
+    public TestEntries getTestEntries() {
+        return testEntries;
+    }
+
+    public void setTestEntries(TestEntries testEntries) {
+        this.testEntries = testEntries;
+    }
+
+    public Results getResults() {
+        return results;
+    }
+
+    public void setResults(Results results) {
+        this.results = results;
+    }
 
     /* Methods to handle conversion to xunit */
-    public double getTotalTime() { return this.times.getTotalTime();}
+    public double getTotalTime() {
+        return this.times.getTotalTime();
+    }
+
     public int getConverted_tests() {
         return this.resultSummary.getCounters().total;
     }
+
     public int getConverted_failures() {
         return this.resultSummary.getCounters().failed;
     }
+
     public int getConverted_errors() {
         return this.resultSummary.getCounters().error;
     }
+
     public int getConverted_disabled() {
         return this.resultSummary.getCounters().inconclusive;
     }
+
     public int getConverted_skipped() {
         return this.resultSummary.getCounters().notExecuted;
     }
-    public String getConverted_timestamp() { return this.times.getCreation_pretty(); }
-    public String getConverted_hostname() {return this.name.substring(0,this.name.indexOf(" ")); }
+
+    public String getConverted_timestamp() {
+        return this.times.getCreation_pretty();
+    }
+
+    public String getConverted_hostname() {
+        return this.name.substring(0, this.name.indexOf(" "));
+    }
 
     /* Don't know what assertions,packages,or files look like */
 
@@ -118,11 +193,21 @@ public class TestRun {
         ArrayList<Property> propertyList = new ArrayList<Property>();
         ArrayList<Properties> propertiesList = new ArrayList<Properties>();
 
-        if(this.id != null) { propertyList.add(new Property("id",id)); }
-        if(this.name != null) { propertyList.add(new Property("name",name));}
-        if(this.runUser != null) {propertyList.add(new Property("runuser",runUser));}
-        if(this.times.getStart() != null) { propertyList.add(new Property("start",this.times.getStart_pretty())); }
-        if(this.times.getFinish() != null) { propertyList.add(new Property("finish",this.times.getFinish_pretty())); }
+        if (this.id != null) {
+            propertyList.add(new Property("id", id));
+        }
+        if (this.name != null) {
+            propertyList.add(new Property("name", name));
+        }
+        if (this.runUser != null) {
+            propertyList.add(new Property("runuser", runUser));
+        }
+        if (this.times.getStart() != null) {
+            propertyList.add(new Property("start", this.times.getStart_pretty()));
+        }
+        if (this.times.getFinish() != null) {
+            propertyList.add(new Property("finish", this.times.getFinish_pretty()));
+        }
 
         propertiesList.add(new Properties(propertyList));
 
@@ -136,31 +221,33 @@ public class TestRun {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if(!(o instanceof TestRun)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        TestRun that = (TestRun) o;
+        TestRun testRun = (TestRun) o;
 
-        if(xmlns != null ? !xmlns.equals(that.xmlns) : that.xmlns != null) return false;
-        if(id != null ? !id.equals(that.id) : that.id != null) return false;
-        if(name != null ? !name.equals(that.name) : that.name != null) return false;
-        if(runUser != null ? !runUser.equals(that.runUser) : that.runUser != null) return false;
-        if(testSettings != null ? !testSettings.equals(that.testSettings) : that.testSettings != null) return false;
-        if(times != null ? !times.equals(that.times) : that.times != null) return false;
-        if(resultSummary != null ? !resultSummary.equals(that.resultSummary) : that.resultSummary != null) return false;
-        if(testDefinitions != null ? !testDefinitions.equals(that.testDefinitions) : that.testDefinitions != null) return false;
-        if(testLists != null ? !testLists.equals(that.testLists) : that.testLists != null) return false;
-        if(testEntries != null ? !testEntries.equals(that.testEntries) : that.testEntries != null) return false;
-        if(results != null ? !results.equals(that.results) : that.results != null) return false;
+        if (id != null ? !id.equals(testRun.id) : testRun.id != null) return false;
+        if (name != null ? !name.equals(testRun.name) : testRun.name != null) return false;
+        if (resultSummary != null ? !resultSummary.equals(testRun.resultSummary) : testRun.resultSummary != null)
+            return false;
+        if (results != null ? !results.equals(testRun.results) : testRun.results != null) return false;
+        if (runUser != null ? !runUser.equals(testRun.runUser) : testRun.runUser != null) return false;
+        if (testDefinitions != null ? !testDefinitions.equals(testRun.testDefinitions) : testRun.testDefinitions != null)
+            return false;
+        if (testEntries != null ? !testEntries.equals(testRun.testEntries) : testRun.testEntries != null) return false;
+        if (testLists != null ? !testLists.equals(testRun.testLists) : testRun.testLists != null) return false;
+        if (testSettings != null ? !testSettings.equals(testRun.testSettings) : testRun.testSettings != null)
+            return false;
+        if (times != null ? !times.equals(testRun.times) : testRun.times != null) return false;
+        if (xmlns != null ? !xmlns.equals(testRun.xmlns) : testRun.xmlns != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        result = name != null ? name.hashCode() : 0;
+        int result = xmlns != null ? xmlns.hashCode() : 0;
         result = 31 * result + (id != null ? id.hashCode() : 0);
-        result = 31 * result + (xmlns != null ? xmlns.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (runUser != null ? runUser.hashCode() : 0);
         result = 31 * result + (testSettings != null ? testSettings.hashCode() : 0);
         result = 31 * result + (times != null ? times.hashCode() : 0);
@@ -169,8 +256,6 @@ public class TestRun {
         result = 31 * result + (testLists != null ? testLists.hashCode() : 0);
         result = 31 * result + (testEntries != null ? testEntries.hashCode() : 0);
         result = 31 * result + (results != null ? results.hashCode() : 0);
-
         return result;
     }
-
 }

@@ -5,13 +5,13 @@ package com.tw.xunit.model.mstest;
  */
 public class TestTypeSpecific {
 
-    public TestTypeSpecific(){
+    public TestTypeSpecific() {
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if(!(o instanceof TestTypeSpecific)) return false;
+        if (!(o instanceof TestTypeSpecific)) return false;
 
         return true;
     }
