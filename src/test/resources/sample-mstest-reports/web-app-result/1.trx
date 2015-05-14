@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="60376440-e39d-45a9-8c9e-612d8935a3ea" name="hl_tfsbuild@MLVPAGOCI01 2015-05-13 10:36:00" runUser="HURONCONSULTING\hl_tfsbuild" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="db2fa370-fbf0-43da-864c-149f158a105b">
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+    <Deployment runDeploymentRoot="hl_tfsbuild_MLVPAGOCI01 2015-05-13 10_36_00" />
+  </TestSettings>
+  <Times creation="2015-05-13T10:36:00.9146118-05:00" queuing="2015-05-13T10:36:01.4458726-05:00" start="2015-05-13T10:36:01.5708753-05:00" finish="2015-05-13T10:36:02.1490145-05:00" />
+  <ResultSummary outcome="Warning">
+    <Counters total="2" executed="2" passed="2" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="MLVPAGOCI01" outcome="Warning" timestamp="2015-05-13T10:36:01.1177409-05:00">
+        <Text>Warning: Test Run deployment issue: The assembly or module 'WebGrease' directly or indirectly referenced by the test container 'd:\go agent\pipelines\release_tracker\website_source\releasetracker.test\bin\release\releasetracker.test.dll' was not found.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="GetReleaseTrackerItems_ShouldReturnItems" storage="d:\go agent\pipelines\release_tracker\website_source\releasetracker.test\bin\release\releasetracker.test.dll" id="d5def14d-824d-85fc-1aa1-689243f32682">
+      <Execution id="eeb8ee68-7b76-40c6-8c40-083489132ede" />
+      <TestMethod codeBase="D:/Go Agent/pipelines/release_tracker/website_source/ReleaseTracker.Test/bin/Release/ReleaseTracker.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ReleaseTracker.Test.TestReleaseTrackerController, ReleaseTracker.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetReleaseTrackerItems_ShouldReturnItems" />
+    </UnitTest>
+    <UnitTest name="GetTFSItems_ShouldReturnItems" storage="d:\go agent\pipelines\release_tracker\website_source\releasetracker.test\bin\release\releasetracker.test.dll" id="7eb3e1df-7643-4783-1a2c-faa24624d560">
+      <Execution id="0789c31c-a544-4e9a-b638-bc5792c511a5" />
+      <TestMethod codeBase="D:/Go Agent/pipelines/release_tracker/website_source/ReleaseTracker.Test/bin/Release/ReleaseTracker.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="ReleaseTracker.Test.TestTFSController, ReleaseTracker.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetTFSItems_ShouldReturnItems" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="d5def14d-824d-85fc-1aa1-689243f32682" executionId="eeb8ee68-7b76-40c6-8c40-083489132ede" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7eb3e1df-7643-4783-1a2c-faa24624d560" executionId="0789c31c-a544-4e9a-b638-bc5792c511a5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="eeb8ee68-7b76-40c6-8c40-083489132ede" testId="d5def14d-824d-85fc-1aa1-689243f32682" testName="GetReleaseTrackerItems_ShouldReturnItems" computerName="MLVPAGOCI01" duration="00:00:00.1856249" startTime="2015-05-13T10:36:01.6333785-05:00" endTime="2015-05-13T10:36:02.0396371-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="eeb8ee68-7b76-40c6-8c40-083489132ede">
+    </UnitTestResult>
+    <UnitTestResult executionId="0789c31c-a544-4e9a-b638-bc5792c511a5" testId="7eb3e1df-7643-4783-1a2c-faa24624d560" testName="GetTFSItems_ShouldReturnItems" computerName="MLVPAGOCI01" duration="00:00:00.0189853" startTime="2015-05-13T10:36:02.0708871-05:00" endTime="2015-05-13T10:36:02.1021377-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0789c31c-a544-4e9a-b638-bc5792c511a5">
+    </UnitTestResult>
+  </Results>
+</TestRun>
