@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="be24312c-1bdc-4b2c-ab2c-589cf25ec1b4" name="user1@user1computername 2015-07-14 11:42:04" runUser="DOMAIN\User1" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="c80b3054-1844-4fce-b25c-210c9a78a4aa">
+    <Deployment userDeploymentRoot="D:\Go Agent\pipelines\project_name\CiderBuild\TestResults" useDefaultDeploymentRoot="false" runDeploymentRoot="user1_user1computername 2015-07-14 11_42_04" />
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2015-07-14T11:42:04.1059927-05:00" queuing="2015-07-14T11:42:04.4700133-05:00" start="2015-07-14T11:42:04.5550185-05:00" finish="2015-07-14T11:42:05.0640475-05:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="3" executed="3" passed="3" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="TestMethod1" storage="d:\go agent\pipelines\project_name\database\projectname.db.test\bin\debug\projectname.db.test.dll" id="e04b8025-f349-9a38-e476-39b116989cff">
+      <Execution id="421e0b85-ffa5-48ab-8819-8baaddadaec6" />
+      <TestMethod codeBase="D:/Go Agent/pipelines/project_name/Database/projectname.DB.Test/bin/Debug/projectname.DB.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="projectname.DB.Test.UnitTest1, projectname.DB.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="TestMethod1" />
+    </UnitTest>
+    <UnitTest name="dbo_DummyProcedureTest" storage="d:\go agent\pipelines\project_name\database\projectname.db.test\bin\debug\projectname.db.test.dll" id="e187fb6d-cadb-cbc7-66ec-959a9ba12019">
+      <Execution id="f480d4c4-1b2f-4277-868e-7a594cd2da97" />
+      <TestMethod codeBase="D:/Go Agent/pipelines/project_name/Database/projectname.DB.Test/bin/Debug/projectname.DB.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="projectname.DB.Test.DummyProcedure_UT, projectname.DB.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="dbo_DummyProcedureTest" />
+    </UnitTest>
+    <UnitTest name="dbo_DummyProcedure_Test2" storage="d:\go agent\pipelines\project_name\database\projectname.db.test\bin\debug\projectname.db.test.dll" id="60655dc4-f3d5-9143-75db-9af6ff5cf743">
+      <Execution id="b3b3db9f-e5af-4425-9995-a45070a1485f" />
+      <TestMethod codeBase="D:/Go Agent/pipelines/project_name/Database/projectname.DB.Test/bin/Debug/projectname.DB.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="projectname.DB.Test.DummyProcedure_UT, projectname.DB.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="dbo_DummyProcedure_Test2" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="60655dc4-f3d5-9143-75db-9af6ff5cf743" executionId="b3b3db9f-e5af-4425-9995-a45070a1485f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e187fb6d-cadb-cbc7-66ec-959a9ba12019" executionId="f480d4c4-1b2f-4277-868e-7a594cd2da97" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e04b8025-f349-9a38-e476-39b116989cff" executionId="421e0b85-ffa5-48ab-8819-8baaddadaec6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="b3b3db9f-e5af-4425-9995-a45070a1485f" testId="60655dc4-f3d5-9143-75db-9af6ff5cf743" testName="dbo_DummyProcedure_Test2" computerName="computername" duration="00:00:00.0763866" startTime="2015-07-14T11:42:04.5810190-05:00" endTime="2015-07-14T11:42:04.9480413-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b3b3db9f-e5af-4425-9995-a45070a1485f">
+      <Output>
+        <DebugTrace>Executing test script...
+1 batches, 2 ResultSets, 2 rows affected
+Validating scalarValueCondition3
+Validating scalarValueCondition4
+</DebugTrace>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="f480d4c4-1b2f-4277-868e-7a594cd2da97" testId="e187fb6d-cadb-cbc7-66ec-959a9ba12019" testName="dbo_DummyProcedureTest" computerName="computername" duration="00:00:00.0190669" startTime="2015-07-14T11:42:04.9530418-05:00" endTime="2015-07-14T11:42:04.9820424-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f480d4c4-1b2f-4277-868e-7a594cd2da97">
+      <Output>
+        <DebugTrace>Executing test script...
+1 batches, 2 ResultSets, 2 rows affected
+Validating scalarValueCondition1
+Validating scalarValueCondition2
+</DebugTrace>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="421e0b85-ffa5-48ab-8819-8baaddadaec6" testId="e04b8025-f349-9a38-e476-39b116989cff" testName="TestMethod1" computerName="computername" duration="00:00:00.0001488" startTime="2015-07-14T11:42:04.9870429-05:00" endTime="2015-07-14T11:42:04.9950424-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="421e0b85-ffa5-48ab-8819-8baaddadaec6">
+    </UnitTestResult>
+  </Results>
+</TestRun>

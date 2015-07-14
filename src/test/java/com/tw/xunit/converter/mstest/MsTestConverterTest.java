@@ -35,4 +35,16 @@ public class MsTestConverterTest {
         TestSuite testSuite = XUnitParser.parseTestSuiteXUnitXML(outputFile);
         assertThat(testSuite.getTestCases().size(), is(2));
     }
+
+    @Test
+    public void testConvertMultipleResults() throws Exception {
+        File outputDirectory = new File("/tmp/" + UUID.randomUUID());
+        new TestReportConverter().convert("mstest", resource("/sample-mstest-reports/combined-multiple-results"), outputDirectory);
+        File databaseoutputFile = new File(outputDirectory.getAbsoluteFile() + "/database.trx.xml");
+        File weboutputFile = new File(outputDirectory.getAbsoluteFile() + "/web.trx.xml");
+        TestSuite databasetestSuite = XUnitParser.parseTestSuiteXUnitXML(databaseoutputFile);
+        TestSuite webtestSuite = XUnitParser.parseTestSuiteXUnitXML(weboutputFile);
+        assertThat(databasetestSuite.getTestCases().size(), is(3));
+        assertThat(webtestSuite.getTestCases().size(), is(2));
+    }
 }
