@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="a516ac0f-b891-4f78-81ba-a5f731929249" name="user1@user1computername 2015-07-14 11:41:44" runUser="DOMAIN\User1" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Default Test Settings" id="66e52071-b20b-4f88-b733-6ae572869d55">
+    <Deployment userDeploymentRoot="D:\Go Agent\pipelines\project_name\Build\TestResults" useDefaultDeploymentRoot="false" runDeploymentRoot="user1computername 2015-07-14 11_41_44" />
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2015-07-14T11:41:44.3588588-05:00" queuing="2015-07-14T11:41:44.6998780-05:00" start="2015-07-14T11:41:44.7828817-05:00" finish="2015-07-14T11:41:45.2849113-05:00" />
+  <ResultSummary outcome="Warning">
+    <Counters total="2" executed="2" passed="2" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <RunInfos>
+      <RunInfo computerName="computername" outcome="Warning" timestamp="2015-07-14T11:41:44.5848689-05:00">
+        <Text>Warning: Test Run deployment issue: The assembly or module 'WebGrease' directly or indirectly referenced by the test container 'd:\go agent\pipelines\project_name\source\projectname.test\bin\debug\projectname.test.dll' was not found.</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="GetprojectnameItems_ShouldReturnItems" storage="d:\go agent\pipelines\project_name\source\projectname.test\bin\debug\projectname.test.dll" id="d5def14d-824d-85fc-1aa1-689243f32682">
+      <Execution id="158905b8-91cc-4658-82c9-425407fa2e19" />
+      <TestMethod codeBase="D:/Go Agent/pipelines/project_name/Source/projectname.Test/bin/Debug/projectname.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="projectname.Test.TestprojectnameController, projectname.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetprojectnameItems_ShouldReturnItems" />
+    </UnitTest>
+    <UnitTest name="GetTFSItems_ShouldReturnItems" storage="d:\go agent\pipelines\project_name\source\projectname.test\bin\debug\projectname.test.dll" id="7eb3e1df-7643-4783-1a2c-faa24624d560">
+      <Execution id="a325c518-a23a-460c-9ce0-56e6d0d074a0" />
+      <TestMethod codeBase="D:/Go Agent/pipelines/project_name/Source/projectname.Test/bin/Debug/projectname.Test.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="projectname.Test.TestTFSController, projectname.Test, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="GetTFSItems_ShouldReturnItems" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="d5def14d-824d-85fc-1aa1-689243f32682" executionId="158905b8-91cc-4658-82c9-425407fa2e19" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7eb3e1df-7643-4783-1a2c-faa24624d560" executionId="a325c518-a23a-460c-9ce0-56e6d0d074a0" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="158905b8-91cc-4658-82c9-425407fa2e19" testId="d5def14d-824d-85fc-1aa1-689243f32682" testName="GetprojectnameItems_ShouldReturnItems" computerName="computername" duration="00:00:00.1825422" startTime="2015-07-14T11:41:44.8098845-05:00" endTime="2015-07-14T11:41:45.2309078-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="158905b8-91cc-4658-82c9-425407fa2e19">
+    </UnitTestResult>
+    <UnitTestResult executionId="a325c518-a23a-460c-9ce0-56e6d0d074a0" testId="7eb3e1df-7643-4783-1a2c-faa24624d560" testName="GetTFSItems_ShouldReturnItems" computerName="computername" duration="00:00:00.0073508" startTime="2015-07-14T11:41:45.2359067-05:00" endTime="2015-07-14T11:41:45.2469094-05:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a325c518-a23a-460c-9ce0-56e6d0d074a0">
+    </UnitTestResult>
+  </Results>
+</TestRun>
